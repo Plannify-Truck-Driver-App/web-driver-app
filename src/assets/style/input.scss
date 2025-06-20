@@ -36,7 +36,7 @@ $timing-cubic: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .input__value {
-  @apply absolute bottom-[7px] left-0 w-full appearance-none bg-transparent px-3 text-sm text-neutral-600 ring-0 dark:text-neutral-50;
+  @apply absolute bottom-[7px] left-0 w-full appearance-none bg-transparent px-3 text-sm text-primary ring-0 dark:text-neutral-50;
 }
 
 .input--focused,
