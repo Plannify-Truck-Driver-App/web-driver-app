@@ -63,14 +63,14 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-a {
+/* a {
   font-weight: 500;
   color: #1887A3;
   text-decoration: inherit;
 }
 a:hover {
   color: #0c6d86;
-}
+} */
 
 body, #root {
   margin: 0;

@@ -11,7 +11,7 @@ interface LoginFormProps {
 export default function LoginForm({ form, onSubmit }: LoginFormProps) {
   return (
     <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4 max-w-sm">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4 sm:max-w-sm">
             <FormField
                 control={form.control}
                 name="email"
