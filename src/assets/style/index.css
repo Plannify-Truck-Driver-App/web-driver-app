@@ -1,5 +1,17 @@
+@import './input.scss';
 @import "tailwindcss";
 @import "tw-animate-css";
+
+@font-face {
+  font-family: 'Sansation';
+  src: local('Sansation'), url('./../fonts/Sansation_Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Sansation';
+  src: local('Sansation Bold'), url('./../fonts/Sansation_Bold.ttf');
+  font-weight: bold;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -17,22 +29,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: #F6F8FB;
   --foreground: oklch(0.145 0 0);
+  --neutral: #FFFFFF;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --secondary: #1887A3;
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
+  --border: #DADADA;
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -52,24 +65,20 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #1887A3;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #0c6d86;
 }
 
-body {
+body, #root {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  width: 100%;
 }
 
 button {
@@ -79,13 +88,13 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  /* background-color: #1a1a1a; */
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
+/* button:hover {
   border-color: #646cff;
-}
+} */
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -111,6 +120,7 @@ button:focus-visible {
   --radius-xl: calc(var(--radius) + 4px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-neutral: var(--neutral);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -143,8 +153,9 @@ button:focus-visible {
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #080809;
   --foreground: oklch(0.985 0 0);
+  --neutral: #000000;
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
