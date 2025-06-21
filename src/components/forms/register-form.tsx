@@ -3,6 +3,10 @@ import type { UseFormReturn } from "react-hook-form";
 import { Form, FormField } from "../ui/form";
 import { InputText } from "../ui/input-text";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
+import PasswordIndicator from "../ui/password-indicator";
+import type { SyntheticEvent } from "react";
+import { generateStrongPassword } from "@/utils/functions/generate-strong-password";
+import { toast } from "sonner";
 
 interface RegisterFormProps {
     form: UseFormReturn<RegisterSchema>,
@@ -10,6 +14,21 @@ interface RegisterFormProps {
 }
 
 export default function RegisterForm({ form, onSubmit }: RegisterFormProps) {
+    const handleGenerateStrongPassword = async (e: SyntheticEvent) => {
+        e.preventDefault()
+
+        const password = generateStrongPassword()
+        form.setValue("password", password)
+        form.setValue("confirmPassword", password)
+
+        try {
+            await navigator.clipboard.writeText(password);
+            toast.info("Le mot de passe a été copié dans le presse-papiers.")
+        } catch (error) {
+            console.error("Erreur lors de la copie du mot de passe : ", error);
+        }
+    }
+
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-row gap-4">
@@ -48,15 +67,15 @@ export default function RegisterForm({ form, onSubmit }: RegisterFormProps) {
                         render={({ field }) => (
                             <Select>
                                 <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Sélectionnez un genre" />
+                                    <SelectValue className="text-sm font-normal" placeholder="Sélectionnez un genre" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
-                                    <SelectLabel>Genre</SelectLabel>
-                                    <SelectItem value="M">Monsieur</SelectItem>
-                                    <SelectItem value="Mlle">Madame</SelectItem>
-                                    <SelectItem value="Mme">Mademoiselle</SelectItem>
-                                    <SelectItem value="Other">Aucun</SelectItem>
+                                        <SelectLabel>Genre</SelectLabel>
+                                        <SelectItem value="M">Monsieur</SelectItem>
+                                        <SelectItem value="Mlle">Madame</SelectItem>
+                                        <SelectItem value="Mme">Mademoiselle</SelectItem>
+                                        <SelectItem value="Other">Aucun</SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
@@ -103,6 +122,10 @@ export default function RegisterForm({ form, onSubmit }: RegisterFormProps) {
                             />
                         )}
                     />
+                    <div className="flex flex-col gap-2">
+                        <a className="text-sm text-secondary hover:underline" href="" onClick={handleGenerateStrongPassword}>Générer un mot de passe</a>
+                        <PasswordIndicator password={form.watch("password")} />
+                    </div>
                 </div>
             </form>
         </Form>
