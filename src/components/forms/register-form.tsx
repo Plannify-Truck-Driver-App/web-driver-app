@@ -46,7 +46,7 @@ export default function RegisterForm({ form, onSubmit }: RegisterFormProps) {
         className="flex flex-row gap-4"
       >
         <div className="flex flex-col gap-4 w-full">
-          <div className="flex flex-row gap-2">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-2">
             <FormField
               control={form.control}
               name="firstname"
