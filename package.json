@@ -9,6 +9,24 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
     "@radix-ui/react-label": "^2.1.7",
