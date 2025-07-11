@@ -18,7 +18,7 @@ export default function AuthenticationLayout() {
       </div>
       <div className="flex flex-row items-center gap-1 text-primary text-sm absolute bottom-4">
         <LifeBuoy size={16} />
-        <a href="/help" className="hover:underline">Vous rencontrez des problèmes ?</a>
+        <a href="/help" className="hover:underline">Vous rencontrez un problème ?</a>
       </div>
     </>
   );
