@@ -5,6 +5,7 @@ import RegisterForm from "@/components/forms/register-form";
 
 interface RegisterPageProps {
     page: 1 | 2;
+    pageTitle: string;
     registerButtonContent: string;
     previousButtonContent: string;
     form: UseFormReturn<RegisterSchema>;
@@ -12,10 +13,10 @@ interface RegisterPageProps {
     onCancel: () => void;
 }
 
-export default function RegisterPage({ page, registerButtonContent, previousButtonContent, form, onSubmit, onCancel }: RegisterPageProps) {
+export default function RegisterPage({ page, pageTitle, registerButtonContent, previousButtonContent, form, onSubmit, onCancel }: RegisterPageProps) {
     return (
         <div className="flex flex-col gap-12">
-            <h1 className="text-3xl font-bold">S'inscrire à Plannify</h1>
+            <h1 className="text-3xl font-bold">{pageTitle}</h1>
             <div className="flex flex-col gap-6">
                 <RegisterForm page={page} form={form} onSubmit={onSubmit} />
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">

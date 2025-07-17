@@ -2,7 +2,7 @@ import { z } from "zod";
 import RegisterPage from "../ui/register-page";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useNavigate, type NavigateFunction } from "react-router";
 
 const registerSchema = z.object({
@@ -59,5 +59,14 @@ export default function RegisterPageFeature() {
         }
     }
 
-    return <RegisterPage page={page} registerButtonContent={registerButtonContent} previousButtonContent={previousButtonContent} form={form} onSubmit={onSubmit} onCancel={onCancel} />;
+    const getFormattedFirstname = useCallback(() => {
+        const firstname = form.getValues('firstname');
+        return firstname ? firstname.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('-') : '';
+    }, [form]);
+
+    const pageTitle = useMemo<string>(() => {
+        return page === 1 ? "S'inscrire à Plannify" : `Bonjour ${getFormattedFirstname()}, vous y êtes presque`;
+    }, [page, getFormattedFirstname]);
+
+    return <RegisterPage page={page} pageTitle={pageTitle} registerButtonContent={registerButtonContent} previousButtonContent={previousButtonContent} form={form} onSubmit={onSubmit} onCancel={onCancel} />;
 }
