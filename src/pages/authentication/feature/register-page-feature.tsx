@@ -48,7 +48,6 @@ export default function RegisterPageFeature() {
             setPage(2);
         } else {
             console.log("Form submitted", form.getValues());
-            // Handle form submission logic here
         }
     }
 
