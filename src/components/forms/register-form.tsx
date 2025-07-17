@@ -12,18 +12,17 @@ import {
   SelectValue,
 } from "../ui/select";
 import PasswordIndicator from "../ui/password-indicator";
-import { useState, type SyntheticEvent } from "react";
+import { type SyntheticEvent } from "react";
 import { generateStrongPassword } from "@/utils/functions/generate-strong-password";
 import { toast } from "sonner";
 
 interface RegisterFormProps {
+  page: 1 | 2;
   form: UseFormReturn<RegisterSchema>;
   onSubmit: (data: RegisterSchema) => void;
 }
 
-export default function RegisterForm({ form, onSubmit }: RegisterFormProps) {
-  const [page, setPage] = useState(1);
-
+export default function RegisterForm({ page, form, onSubmit }: RegisterFormProps) {
   const handleGenerateStrongPassword = async (e: SyntheticEvent) => {
     e.preventDefault();
 
@@ -45,7 +44,7 @@ export default function RegisterForm({ form, onSubmit }: RegisterFormProps) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-row gap-4"
       >
-        <div className="flex flex-col gap-4 w-full">
+        <div className="flex flex-col gap-4 w-full" style={page === 2 ? { display: "none" } : {}}>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-2">
             <FormField
               control={form.control}
@@ -109,7 +108,7 @@ export default function RegisterForm({ form, onSubmit }: RegisterFormProps) {
             )}
           />
         </div>
-        <div className="hidden sm:flex flex-col gap-4 w-full">
+        <div className="hidden sm:flex flex-col gap-4 w-full" style={page === 2 ? { display: "flex" } : {}}>
           <FormField
             control={form.control}
             name="password"
