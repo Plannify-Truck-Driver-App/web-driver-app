@@ -1,0 +1,12 @@
+front:
+  image: registry.gitlab.com/plannify-group/plannify-front-web-user:prod-fa000461
+
+  ingress:
+    enabled: true
+    annotations:
+      spec.ingressClassName: traefik
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+    hosts: "app.plannify.be"
+    tls: true
+    tlsSecret: "front-user-tls"

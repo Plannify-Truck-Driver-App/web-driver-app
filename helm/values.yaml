@@ -1,0 +1,9 @@
+namespace: plannify
+
+front:
+  name: front-web-user
+  replicaCount: 1
+  port: 8080
+
+  servicePort: 80
+  containerPort: 8080

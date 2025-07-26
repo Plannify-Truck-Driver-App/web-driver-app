@@ -1,0 +1,12 @@
+front:
+  image: registry.gitlab.com/plannify-group/plannify-front-web-user:staging-7e8d9b88
+
+  ingress:
+    enabled: true
+    annotations:
+      spec.ingressClassName: traefik
+      cert-manager.io/cluster-issuer: letsencrypt-baptiste
+      traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+    hosts: "dev.plannify.be"
+    tls: true
+    tlsSecret: "front-user-tls"
